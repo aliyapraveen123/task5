@@ -1,80 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>items</title>
+    <title>Fantastic To-Do List</title>
 </head>
-
 <body>
-    <section id='container'></section>
     <script>
+        document.body.style.fontFamily = 'Arial, sans-serif';
+        document.body.style.backgroundColor = '#f0f8ff';
+        document.body.style.display = 'flex';
+        document.body.style.flexDirection = 'column';
+        document.body.style.alignItems = 'center';
+        document.body.style.padding = '30px';
+
+     
         let heading = document.createElement('h1');
-        heading.textContent = 'My List';
-        heading.style.margin = '5px'
+        heading.textContent = '🌟 My To-Do List';
+        heading.style.color = '#333';
+        heading.style.marginBottom = '20px';
         document.body.appendChild(heading);
 
+      
         let controls = document.createElement('div');
+        controls.style.display = 'flex';
+        controls.style.marginBottom = '20px';
+        document.body.appendChild(controls);
 
-
-
+   
         let input = document.createElement('input');
-        input.placeholder = 'enter something';
-        input.style.backgroundColor = 'whitesmoke';
-        input.style.padding = '5px';
-        input.style.margin = '5px';
+        input.placeholder = 'Add a new task...';
+        input.style.padding = '10px';
+        input.style.borderRadius = '5px';
+        input.style.border = '1px solid #ccc';
+        input.style.width = '250px';
+        input.style.outline = 'none';
         controls.appendChild(input);
 
+       
+        let addBtn = document.createElement('button');
+        addBtn.textContent = 'Add';
+        addBtn.style.marginLeft = '10px';
+        addBtn.style.padding = '10px 15px';
+        addBtn.style.backgroundColor = '#3399ff';
+        addBtn.style.color = 'white';
+        addBtn.style.border = 'none';
+        addBtn.style.borderRadius = '5px';
+        addBtn.style.cursor = 'pointer';
+        addBtn.addEventListener('mouseover', () => addBtn.style.backgroundColor = '#007acc');
+        addBtn.addEventListener('mouseout', () => addBtn.style.backgroundColor = '#3399ff');
+        controls.appendChild(addBtn);
 
-        let gap = document.createElement('br');
-        controls.appendChild(gap);
+     
+        let removeAllBtn = document.createElement('button');
+        removeAllBtn.textContent = 'Remove All';
+        removeAllBtn.style.marginLeft = '10px';
+        removeAllBtn.style.padding = '10px 15px';
+        removeAllBtn.style.backgroundColor = '#ff4d4d';
+        removeAllBtn.style.color = 'white';
+        removeAllBtn.style.border = 'none';
+        removeAllBtn.style.borderRadius = '5px';
+        removeAllBtn.style.cursor = 'pointer';
+        removeAllBtn.addEventListener('mouseover', () => removeAllBtn.style.backgroundColor = '#e60000');
+        removeAllBtn.addEventListener('mouseout', () => removeAllBtn.style.backgroundColor = '#ff4d4d');
+        controls.appendChild(removeAllBtn);
 
-
-        let add = document.createElement('button');
-        add.textContent = "Add Items";
-        add.style.margin = '5px';
-        controls.appendChild(add);
-
-        let remove = document.createElement('button');
-        remove.textContent = "Remove Item";
-        remove.style.margin = '5px';
-        controls.appendChild(remove);
-
-        let removeall = document.createElement('button');
-        removeall.textContent = 'remove all items';
-        removeall.style.margin = '5px';
-        controls.appendChild(removeall);
-
-        document.body.appendChild(controls);
-        document.body.style.backgroundColor = 'lightblue';
-
+     
         let ul = document.createElement('ul');
+        ul.style.listStyle = 'none';
+        ul.style.padding = '0';
+        ul.style.width = '350px';
         document.body.appendChild(ul);
 
-
-        add.addEventListener('click', function () {
+       
+        addBtn.addEventListener('click', function () {
             if (input.value === '') {
-                alert("Please Enter Something");
+                alert("Please enter a task!");
                 return;
             }
-            let list = document.createElement('li');
-            list.textContent = input.value
-            ul.appendChild(list);
-            input.value = '';
-        })
 
-        remove.addEventListener('click', function () {
-            if (ul.lastChild) {
-                ul.removeChild(ul.lastChild)
-            }
+            let li = document.createElement('li');
+            li.style.backgroundColor = '#e6f0ff';
+            li.style.padding = '10px';
+            li.style.margin = '8px 0';
+            li.style.borderRadius = '5px';
+            li.style.display = 'flex';
+            li.style.justifyContent = 'space-between';
+            li.style.alignItems = 'center';
+            li.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+
+         
+            let taskText = document.createElement('span');
+            taskText.textContent = input.value;
+            li.appendChild(taskText);
+
+      
+            let removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.style.padding = '5px 10px';
+            removeBtn.style.backgroundColor = '#ff4d4d';
+            removeBtn.style.color = 'white';
+            removeBtn.style.border = 'none';
+            removeBtn.style.borderRadius = '5px';
+            removeBtn.style.cursor = 'pointer';
+            removeBtn.addEventListener('mouseover', () => removeBtn.style.backgroundColor = '#e60000');
+            removeBtn.addEventListener('mouseout', () => removeBtn.style.backgroundColor = '#ff4d4d');
+
+            removeBtn.addEventListener('click', function () {
+                ul.removeChild(li);
+            });
+
+            li.appendChild(removeBtn);
+            ul.appendChild(li);
+
+            input.value = '';
         });
 
-        removeall.addEventListener('click', function () {
+    
+        removeAllBtn.addEventListener('click', function () {
             ul.innerHTML = '';
-        })
+        });
     </script>
 </body>
-
 </html>
