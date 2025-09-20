@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>items</title>
+</head>
+
+<body>
+    <section id='container'></section>
+    <script>
+        let heading = document.createElement('h1');
+        heading.textContent = 'My List';
+        heading.style.margin = '5px'
+        document.body.appendChild(heading);
+
+        let controls = document.createElement('div');
+
+
+
+        let input = document.createElement('input');
+        input.placeholder = 'enter something';
+        input.style.backgroundColor = 'whitesmoke';
+        input.style.padding = '5px';
+        input.style.margin = '5px';
+        controls.appendChild(input);
+
+
+        let gap = document.createElement('br');
+        controls.appendChild(gap);
+
+
+        let add = document.createElement('button');
+        add.textContent = "Add Items";
+        add.style.margin = '5px';
+        controls.appendChild(add);
+
+        let remove = document.createElement('button');
+        remove.textContent = "Remove Item";
+        remove.style.margin = '5px';
+        controls.appendChild(remove);
+
+        let removeall = document.createElement('button');
+        removeall.textContent = 'remove all items';
+        removeall.style.margin = '5px';
+        controls.appendChild(removeall);
+
+        document.body.appendChild(controls);
+        document.body.style.backgroundColor = 'lightblue';
+
+        let ul = document.createElement('ul');
+        document.body.appendChild(ul);
+
+
+        add.addEventListener('click', function () {
+            if (input.value === '') {
+                alert("Please Enter Something");
+                return;
+            }
+            let list = document.createElement('li');
+            list.textContent = input.value
+            ul.appendChild(list);
+            input.value = '';
+        })
+
+        remove.addEventListener('click', function () {
+            if (ul.lastChild) {
+                ul.removeChild(ul.lastChild)
+            }
+        });
+
+        removeall.addEventListener('click', function () {
+            ul.innerHTML = '';
+        })
+    </script>
+</body>
+
+</html>
